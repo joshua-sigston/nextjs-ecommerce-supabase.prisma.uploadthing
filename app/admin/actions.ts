@@ -20,6 +20,8 @@ const productSchema = z.object({
 })
 
 export async function addProduct(prevState: any, formData: any) {
+  
+console.log(formData)
 
   const validatedFields = productSchema.safeParse({
     category: formData.get("category"),

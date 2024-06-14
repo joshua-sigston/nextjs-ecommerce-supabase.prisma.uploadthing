@@ -15,17 +15,16 @@ datasource db {
 }
 
 model Product {
-  id                     String   @id @default(uuid())
-  category               String
-  name                   String
-  priceInCents           Int
-  filePath               String
-  imagePath              String
-  description            String
-  isAvailableForPurchase Boolean  @default(true)
-  createdAt              DateTime @default(now())
-  updatedAt              DateTime @updatedAt
-  orders                 Order[]
+  id           String   @id @default(uuid())
+  category     String
+  name         String
+  priceInCents Int
+  image        String[]
+  description  String
+  isAvailable  Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  // orders       Order[]
 }
 
 model User {
@@ -33,17 +32,19 @@ model User {
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  role      String
   orders    Order[]
 }
 
 model Order {
-  id               String   @id @default(uuid())
-  pricePaidInCents Int
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id           String   @id @default(uuid())
+  totalInCents Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  userId    String
-  productId String
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+  userId  String
+  product String[]
+  prices  Int[]
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
 }

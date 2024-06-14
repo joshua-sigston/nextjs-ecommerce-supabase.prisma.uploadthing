@@ -9,6 +9,7 @@ async function getProducts() {
       id: true,
       name: true,
       category: true,
+      image: true,
       priceInCents: true,
       isAvailable: true,
       _count: { select: { orders: true } },
@@ -19,6 +20,7 @@ async function getProducts() {
 
 export default async function CreateProduct() {
   const products = await getProducts();
+  console.log(products);
   // console.log(products[0]._count.orders);
 
   return (

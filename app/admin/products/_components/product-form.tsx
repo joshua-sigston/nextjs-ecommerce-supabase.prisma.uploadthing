@@ -116,7 +116,7 @@ export default function ProductForm({ product }: { product?: Product | null }) {
             </div>
 
             <div className="">
-              {product !== null && (
+              {product !== undefined && (
                 <Image
                   src={`${product?.image}`}
                   height={400}
