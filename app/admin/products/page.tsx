@@ -12,7 +12,7 @@ async function getProducts() {
       image: true,
       priceInCents: true,
       isAvailable: true,
-      _count: { select: { orders: true } },
+      _count: { select: { orderItem: true } },
     },
   });
   return data;
@@ -20,8 +20,6 @@ async function getProducts() {
 
 export default async function CreateProduct() {
   const products = await getProducts();
-  console.log(products);
-  // console.log(products[0]._count.orders);
 
   return (
     <div className="flex flex-col gap-y-10">
@@ -29,7 +27,7 @@ export default async function CreateProduct() {
         <Link href="products/create-product">Create Product</Link>
       </Button>
       <div>
-        {products.length === 0 ? (
+        {products.length == 0 ? (
           <p>No products found</p>
         ) : (
           <ProductsTable products={products} />

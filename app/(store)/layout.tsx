@@ -8,7 +8,7 @@ export default function StoreLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <Navigation />
+        {/* <Navigation /> */}
         {children}
       </body>
     </html>

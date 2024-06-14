@@ -29,7 +29,6 @@ interface Props {
 }
 
 export default function ProductsTable({ products }: any) {
-  products.map((item: any) => console.log(item));
   return (
     <>
       <Table>
@@ -68,7 +67,8 @@ export default function ProductsTable({ products }: any) {
               <TableCell>
                 {formatCurrency(product.priceInCents / 100)}
               </TableCell>
-              <TableCell>{product._count.orders}</TableCell>
+              <TableCell>{product._count.orderItem}</TableCell>
+              <TableCell>{product.orders}</TableCell>
 
               <TableCell>
                 <DropdownMenu>
@@ -87,10 +87,10 @@ export default function ProductsTable({ products }: any) {
                       isAvailable={product.isAvailable}
                     />
                     <DropdownMenuSeparator />
-                    <DeleteDropdownItem
+                    {/* <DeleteDropdownItem
                       id={product.id}
                       disabled={product._count > 0}
-                    />
+                    /> */}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TableCell>
