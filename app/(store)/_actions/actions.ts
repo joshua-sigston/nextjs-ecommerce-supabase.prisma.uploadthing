@@ -19,3 +19,16 @@ export const getNewProducts = cache(
   ['/', 'getNewProducts'],
   { revalidate: 60 * 60 * 24 },
 );
+
+export async function getAllProducts() {
+  const products = await db.product.findMany({
+    where: {
+      isAvailable: true,
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+  });
+
+  return products;
+}

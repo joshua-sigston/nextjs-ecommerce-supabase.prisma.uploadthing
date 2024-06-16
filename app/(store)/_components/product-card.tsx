@@ -1,4 +1,8 @@
 'use client';
+
+import Link from 'next/link';
+import Image from 'next/image';
+import { formatCurrency } from '@/lib/currencyFormats';
 import {
   Card,
   CardContent,
@@ -6,12 +10,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from './ui/card';
-
-import { Button } from './ui/button';
-import Link from 'next/link';
-import Image from 'next/image';
-import { formatCurrency } from '@/lib/currencyFormats';
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   name: string;
@@ -28,7 +28,7 @@ export default function ProductCard({
   id,
   image,
 }: Props) {
-  console.log('products-card ' + image[0]);
+  // console.log('products-card ' + image[0]);
   return (
     <Card className="overflow-hidden relative shadow-lg lg:odd:row-span-2">
       <div className="absolute w-full h-full aspect-auto">
@@ -49,7 +49,7 @@ export default function ProductCard({
         </CardHeader>
         <CardFooter>
           <Button asChild size="lg" className="w-full">
-            <Link href={`/products/${id}/purchase`}>Purchase</Link>
+            <Link href={`/products/${id}`}>See Product</Link>
           </Button>
         </CardFooter>
       </div>

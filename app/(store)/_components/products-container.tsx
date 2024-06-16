@@ -1,4 +1,4 @@
-import ProductCard, { ProductCardSkeleton } from '@/components/product-card';
+import ProductCard, { ProductCardSkeleton } from './product-card';
 import { Product } from '@prisma/client';
 import { Suspense } from 'react';
 
