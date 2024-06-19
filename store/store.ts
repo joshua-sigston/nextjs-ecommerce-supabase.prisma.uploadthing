@@ -21,7 +21,7 @@ const useCartStore = create(persist<CartState>((set, get) => ({
       return {
         cart: state.cart.map(item => {
           if (item.id === product.id) {
-            return {...item, quantity: item.quantity + 1}
+            return {...item, quantity: (item.quantity + 1)}
           }          
           return item
         })

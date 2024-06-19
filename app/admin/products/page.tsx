@@ -12,7 +12,7 @@ async function getProducts() {
       image: true,
       priceInCents: true,
       isAvailable: true,
-      _count: { select: { orderItem: true } },
+      _count: { select: { orderItems: true } },
     },
   });
   return data;
