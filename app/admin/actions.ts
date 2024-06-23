@@ -138,13 +138,10 @@ export async function deleteUser(id: string) {
 
 export async function deleteOrder(id: string) {
   console.log(id)
-  // const order = await db.order.delete({
-  //   where: { id },
-  // })
-
-  const order = await db.order.delete({where: { id },})
-
-  console.log(order)
+  const order = await db.order.delete({
+    where: { id },
+  })
+  
   if (order == null) return notFound()
 
   return redirect('/admin/orders')

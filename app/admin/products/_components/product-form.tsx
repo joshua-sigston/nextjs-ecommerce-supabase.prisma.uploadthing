@@ -41,7 +41,7 @@ export default function ProductForm({ product }: { product?: Product | null }) {
   );
   const [price, setPrice] = useState<number | undefined>(product?.priceInCents);
   const [image, setImage] = useState<string[] | undefined>(product?.image);
-  console.log(product);
+  // console.log(product);
 
   return (
     <div className=" flex items-center justify-center">

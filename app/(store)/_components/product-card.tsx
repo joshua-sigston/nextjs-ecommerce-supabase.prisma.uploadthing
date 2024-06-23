@@ -28,7 +28,6 @@ export default function ProductCard({
   id,
   image,
 }: Props) {
-  // console.log('products-card ' + image[0]);
   return (
     <Card className="overflow-hidden relative shadow-lg lg:odd:row-span-2">
       <div className="absolute w-full h-full aspect-auto">

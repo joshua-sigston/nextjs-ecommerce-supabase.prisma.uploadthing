@@ -1,3 +1,4 @@
+import ClearCart from '@/app/(store)/_components/clear-cart-action';
 import db from '@/lib/db';
 import React from 'react';
 
@@ -20,6 +21,7 @@ export default async function SuccessPage({
     <div>
       <h1>Payment Successful!</h1>
       <p>Thank you for your purchase.</p>
+      <ClearCart />
     </div>
   );
 }

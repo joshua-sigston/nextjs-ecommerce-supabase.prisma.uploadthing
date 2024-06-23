@@ -6,7 +6,7 @@ import { ProductCardSkeleton } from '../_components/product-card';
 
 export default async function ProductsPage() {
   const products = await getAllProducts();
-
+  // console.log(products);
   return (
     <div>
       <Suspense

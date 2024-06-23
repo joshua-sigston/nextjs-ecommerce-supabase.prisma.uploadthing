@@ -15,10 +15,11 @@ export const ourFileRouter = {
       // This code runs on your server before upload
       // const user = await auth(req);
       const supabase = await createClient();
+
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      console.log('core.ts' + user);
+      // console.log('core.ts' + user);
  
       // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");
