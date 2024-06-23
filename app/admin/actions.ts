@@ -70,13 +70,11 @@ export async function toggleProductAvailability(id: string, isAvailable: boolean
 }
 
 export async function deleteProduct(id: string) {
+  console.log('deleteProduct function' + id)
   const product = await db.product.delete({where: {id}})
 
   if (product === null) return notFound()
 
-  // await fs.unlink(`public${product.imagePath}`)
-  // revalidatePath('/')
-  // revalidatePath('/products')
 }
 
 const editSchema = z.object({
@@ -139,11 +137,15 @@ export async function deleteUser(id: string) {
 }
 
 export async function deleteOrder(id: string) {
-  const order = await db.order.delete({
-    where: { id },
-  })
+  console.log(id)
+  // const order = await db.order.delete({
+  //   where: { id },
+  // })
 
+  const order = await db.order.delete({where: { id },})
+
+  console.log(order)
   if (order == null) return notFound()
 
-  return order
+  return redirect('/admin/orders')
 }
