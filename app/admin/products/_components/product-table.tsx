@@ -67,7 +67,7 @@ export default function ProductsTable({ products }: any) {
               <TableCell>
                 {formatCurrency(product.priceInCents / 100)}
               </TableCell>
-              <TableCell>{product._count.orderItem}</TableCell>
+              <TableCell>{product._count.orderItems}</TableCell>
               <TableCell>{product.orders}</TableCell>
 
               <TableCell>
@@ -87,10 +87,10 @@ export default function ProductsTable({ products }: any) {
                       isAvailable={product.isAvailable}
                     />
                     <DropdownMenuSeparator />
-                    {/* <DeleteDropdownItem
+                    <DeleteDropdownItem
                       id={product.id}
                       disabled={product._count > 0}
-                    /> */}
+                    />
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TableCell>

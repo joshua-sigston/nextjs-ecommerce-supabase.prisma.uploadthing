@@ -127,3 +127,23 @@ export async function updateProduct(id: string, prevState: any, formData: any) {
  
   return redirect('/admin/products')
 }
+
+export async function deleteUser(id: string) {
+  const user = await db.user.delete({
+    where: {id}         
+  })
+
+  if (user == null) return notFound()
+  
+  return user
+}
+
+export async function deleteOrder(id: string) {
+  const order = await db.order.delete({
+    where: { id },
+  })
+
+  if (order == null) return notFound()
+
+  return order
+}

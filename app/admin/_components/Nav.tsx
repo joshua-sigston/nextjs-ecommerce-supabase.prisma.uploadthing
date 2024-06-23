@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation';
 
 export default function Nav() {
   return (
-    <div className="bg-secondary">
+    <nav className="bg-secondary">
       <NavLinks />
-    </div>
+    </nav>
   );
 }
 
