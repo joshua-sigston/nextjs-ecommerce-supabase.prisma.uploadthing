@@ -7,6 +7,8 @@ import {
 } from '@/components/ui/card';
 import { formatCurrency, formatNumber } from '@/lib/currencyFormats';
 import db from '@/lib/db';
+import { Suspense } from 'react';
+import LoadingCards from './loading-cards';
 
 async function getOrderStatus() {
   const orderStatus = await db.order.findMany();
@@ -30,20 +32,20 @@ async function getOrderStatus() {
   return { isPayed, notPayed, totalProfits };
 }
 
-async function getOrderData() {
-  await wait(2000);
+// async function getOrderData() {
+//   await wait(2000);
 
-  const data = await db.order.aggregate({
-    _sum: { totalInCents: true },
-    _count: true,
-  });
+//   const data = await db.order.aggregate({
+//     _sum: { totalInCents: true },
+//     _count: true,
+//   });
 
-  // console.log(data);
-  return {
-    amount: (data._sum.totalInCents || 0) / 100,
-    numOfSales: data._count,
-  };
-}
+//   // console.log(data);
+//   return {
+//     amount: (data._sum.totalInCents || 0) / 100,
+//     numOfSales: data._count,
+//   };
+// }
 
 async function getUserData() {
   const [userCount, orderData] = await Promise.all([
@@ -76,38 +78,39 @@ async function getProductData() {
 }
 
 export default async function DashboardContent() {
-  const [salesData, userData, productData, orderData] = await Promise.all([
-    getOrderData(),
+  const [userData, productData, orderData] = await Promise.all([
     getUserData(),
     getProductData(),
     getOrderStatus(),
   ]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-5">
-      <DashboardCard
-        title="Orders Completed"
-        subtitle={`Orders completed: ${orderData.isPayed}`}
-        body={`Amount made: ${formatCurrency(orderData.totalProfits)}`}
-      />
-      <DashboardCard
-        title="Orders Pending"
-        subtitle={`Orders pending: ${orderData.notPayed}`}
-        body={`Click to see order details`}
-      />
-      <DashboardCard
-        title="Customer"
-        subtitle={`${formatCurrency(
-          userData.averageValuePerUser,
-        )} average value`}
-        body={formatNumber(userData.userCount)}
-      />
-      <DashboardCard
-        title="Active Products"
-        subtitle={`${formatNumber(productData.inactiveCount)} Inactive`}
-        body={formatNumber(productData.activeCount)}
-      />
-    </div>
+    <Suspense fallback={<LoadingCards />}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-5">
+        <DashboardCard
+          title="Orders Completed"
+          subtitle={`Orders completed: ${orderData.isPayed}`}
+          body={`Amount made: ${formatCurrency(orderData.totalProfits)}`}
+        />
+        <DashboardCard
+          title="Orders Pending"
+          subtitle={`Orders pending: ${orderData.notPayed}`}
+          body={`Click to see order details`}
+        />
+        <DashboardCard
+          title="Customer"
+          subtitle={`${formatCurrency(
+            userData.averageValuePerUser,
+          )} average value`}
+          body={formatNumber(userData.userCount)}
+        />
+        <DashboardCard
+          title="Active Products"
+          subtitle={`${formatNumber(productData.inactiveCount)} Inactive`}
+          body={formatNumber(productData.activeCount)}
+        />
+      </div>
+    </Suspense>
   );
 }
 

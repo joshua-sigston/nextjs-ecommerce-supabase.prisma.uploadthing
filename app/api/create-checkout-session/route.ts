@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 export async function POST(req: NextRequest) {
   try {
     const { cart, totalCost } = await req.json();
-    console.log(cart, totalCost)
+    // console.log(cart, totalCost)
 
     const lineItems = cart.map((product: { id: string, name: string, priceInCents: number, quantity: number }) => ({
       price_data: {

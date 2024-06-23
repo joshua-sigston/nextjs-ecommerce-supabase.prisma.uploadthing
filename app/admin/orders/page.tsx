@@ -41,8 +41,6 @@ export default function OrdersPage() {
 
 async function OrdersTable() {
   const orders = await getOrders();
-  console.log(orders);
-  console.log(orders[0].isPaid);
 
   if (orders.length === 0) return <h3>No Orders Found</h3>;
 
