@@ -1,8 +1,8 @@
-import Navigation from '@/components/navigation';
+import Navigation from './_components/navigation';
 import db from '@/lib/db';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import CartBtn from './_components/cart-action';
+import CartBtn from './_components/cart-icon';
 
 export default async function StoreLayout({
   children,
@@ -14,7 +14,7 @@ export default async function StoreLayout({
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  // console.log(user?.email);
+  console.log(user?.email);
 
   if (!user) return redirect('/sign-in');
 
@@ -37,8 +37,8 @@ export default async function StoreLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className="p-3">
+        <Navigation user={user?.email} />
         {dbUser && <CartBtn />}
-        {/* <Navigation /> */}
         {children}
       </body>
     </html>

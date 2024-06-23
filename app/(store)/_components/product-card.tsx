@@ -38,6 +38,7 @@ export default function ProductCard({
           width={300}
           className="w-full h-full object-cover"
           alt={name}
+          priority={true}
         />
       </div>
       <div className="relative z-10 bg-gray-900/40 h-full w-full flex flex-col items-center justify-center text-white">

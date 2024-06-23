@@ -15,9 +15,9 @@ import {
 import { formatCurrency } from '@/lib/currencyFormats';
 import db from '@/lib/db';
 import { MoreVertical } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
+import React, { Suspense } from 'react';
 import DeleteDropDownItem from './_components/user-actions';
+import Spinner from '../_components/spinner';
 
 function getUsers() {
   return db.user.findMany({
@@ -33,9 +33,11 @@ function getUsers() {
 
 export default function UsersPage() {
   return (
-    <div>
-      <UsersTable />
-    </div>
+    <Suspense fallback={<Spinner />}>
+      <div>
+        <UsersTable />
+      </div>
+    </Suspense>
   );
 }
 

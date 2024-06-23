@@ -8,7 +8,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 export function DashbaordSkeleton() {
   return (
-    <div className="mx-auto min-w-[250px] h-[150px] bg-blue-300 space-y-5 p-5 rounded-md shadow-md">
+    <div className="mx-auto min-w-[250px] h-[150px] bg-muted-foreground space-y-5 p-5 rounded-md shadow-md">
       <div className="space-y-3">
         <Skeleton className="w-[100px] h-[25px] rounded-md" />
 

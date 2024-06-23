@@ -14,7 +14,7 @@ export default function ProductButtons({ data }: Props) {
   const quantity = item?.quantity || 0;
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center space-x-3">
       <div className="w-[150px] mx-auto">
         <AddButton data={data} />
       </div>

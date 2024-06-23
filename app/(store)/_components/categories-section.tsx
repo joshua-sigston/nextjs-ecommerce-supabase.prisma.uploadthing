@@ -1,16 +1,17 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const categoriesList = [
-  { title: 'Classic', src: '/categoriesImgs/classicImg.jpg' },
-  { title: 'Modern', src: '/categoriesImgs/modernImg.jpg' },
-  { title: 'Set', src: '/categoriesImgs/setImg.jpg' },
-  { title: 'Accessories', src: '/categoriesImgs/accessoriesImg.jpg' },
+  { title: 'classic', src: '/categoriesImgs/classicImg.jpg' },
+  { title: 'modern', src: '/categoriesImgs/modernImg.jpg' },
+  { title: 'set', src: '/categoriesImgs/setImg.jpg' },
+  { title: 'accessories', src: '/categoriesImgs/accessoriesImg.jpg' },
 ];
 
 export default function CategoriesSection() {
   return (
-    <section className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 lg:max-w-[1200px] lg:m-auto">
+    <section className=" px-3 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 lg:max-w-[1200px] lg:m-auto">
       {categoriesList.map((item, index) => (
         <CategoryCard key={index} {...item} />
       ))}
@@ -26,17 +27,19 @@ interface CategoriesProps {
 function CategoryCard({ title, src }: CategoriesProps) {
   return (
     <div className="relative flex flex-col items-center justify-center rounded-md overflow-hidden shadow-lg lg:first:col-span-2 lg:last:col-span-2">
-      <div className="w-full h-[300px] aspect-auto">
+      <div className="w-full h-[300px]">
         <Image
           src={`${src}`}
-          height={300}
+          height={500}
           width={300}
           className="w-full h-full object-cover"
           alt={title}
         />
       </div>
       <div className="absolute top-0 left-0 h-full w-full bg-gray-900/40 flex items-center justify-center">
-        <h3 className="text-3xl text-white">{title}</h3>
+        <Link href={`/category/${title}`}>
+          <h3 className="text-3xl text-white">{title.toUpperCase()}</h3>
+        </Link>
       </div>
     </div>
   );

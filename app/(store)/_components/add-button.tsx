@@ -1,11 +1,10 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+
 import useCartStore from '@/store/store';
 
 import { Product } from '@prisma/client';
 import React, { useState } from 'react';
-import RemoveButton from './remove-button';
 
 interface Props {
   data: Product;

@@ -2,9 +2,9 @@
 
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
-export default function Nav() {
+export default function Navigation() {
   return (
     <nav className="bg-secondary">
       <NavLinks />
@@ -21,6 +21,7 @@ const links = [
 
 export function NavLinks() {
   const pathname = usePathname();
+  console.log(pathname);
   return (
     <div className="flex justify-evenly p-4">
       {links.map((link, index) => (
@@ -29,7 +30,7 @@ export function NavLinks() {
           key={index}
           className={cn(
             'p-2 rounded-sm shadow-md bg-background hover:bg-primary/70 hover:text-secondary focus-visible:bg-secondary focus-visible:text-secondary-foreground transition ease-in-out duration-300 font-semibold',
-            pathname === `${link.href}` && 'text-primary',
+            pathname === `${link.href}` && 'text-secondary bg-primary',
           )}
         >
           {link.title}

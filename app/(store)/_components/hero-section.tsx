@@ -19,7 +19,7 @@ export default function Hero() {
           <div className="absolute hidden left-5 top-5 w-[400px] h-[350px] bg-gray-900/40 md:block"></div>
         </div>
       </div>
-      <div className="flex flex-col gap-y-4 md:justify-center md:px-5">
+      <div className="flex flex-col gap-y-4 md:justify-center md:px-5 px-3">
         <h1 className="text-4xl font-semibold md:text-6xl">ViewFinder</h1>
         <p className="text-2xl md:text-3xl">Lorem ipsum dolor sit amet.</p>
         <p className="md:max-w-[300px]">

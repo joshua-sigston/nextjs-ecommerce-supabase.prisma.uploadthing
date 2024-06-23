@@ -10,10 +10,13 @@ const links = [
   { href: '/', name: 'HOME' },
   { href: '/products', name: 'PRODUCTS' },
   { href: '/cart', name: 'CART' },
-  { href: '/sign-in', name: 'SignIn' },
 ];
 
-export default function Nav() {
+interface Props {
+  user: string | undefined;
+}
+
+export default function Navigation({ user }: Props) {
   const [menu, setMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -22,7 +25,7 @@ export default function Nav() {
   };
 
   return (
-    <>
+    <nav>
       <Hamburger toggleMenu={toggleMenu} menu={menu} />
       <AnimatePresence mode="wait">
         {menu && (
@@ -52,7 +55,7 @@ export default function Nav() {
           </motion.nav>
         )}
       </AnimatePresence>
-    </>
+    </nav>
   );
 }
 

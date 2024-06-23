@@ -16,11 +16,11 @@ export default function CartBtn() {
   // if (!mounted) return null;
 
   return (
-    <>
+    <div className="fixed right-3 top-10 lg:right-28">
       <Link href="/cart" className="flex space-x-3 items-center m-2">
         <ShoppingBag />
         <span>{items}</span>
       </Link>
-    </>
+    </div>
   );
 }

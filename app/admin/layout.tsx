@@ -1,4 +1,4 @@
-import Nav from './_components/Nav';
+import Navigation from './_components/navigation';
 
 // export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
@@ -11,7 +11,7 @@ export default function AdminLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <Nav />
+        <Navigation />
         {children}
       </body>
     </html>

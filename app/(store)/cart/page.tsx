@@ -9,7 +9,15 @@ import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 import { Button } from '@/components/ui/button';
-import { MakeOrder } from '@/app/actions';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import RemoveAllButton from '../_components/empty-cart-button';
 
 export default function Cart() {
   const { cart, items } = useCartStore();
@@ -38,33 +46,69 @@ export default function Cart() {
     }
   };
 
+  if (cart.length === 0)
+    return (
+      <main className="h-screen flex items-center justify-center">
+        <h3 className="text-xl font-semibold">Your Cart is Empty</h3>
+      </main>
+    );
+
   return (
-    <div>
-      {cart.map((item, index) => (
-        <div key={index} className="flex items-center justify-around">
-          <h4>{item.name}</h4>
-          <Image
-            src={`${item.image}`}
-            height={100}
-            width={100}
-            alt="product image"
-          />
-          <div className="flex flex-col items-center justify-center">
-            <div>
-              <AddButton data={item} />
-            </div>
-            <p>{item.quantity}</p>
-            <div>
-              <RemoveButton data={item} />
-            </div>
-          </div>
-          <p>{formatCurrency(item.priceInCents / 100)}</p>
+    <main className="mt-[5rem]">
+      <h3 className="text-center font-semibold text-lg">Your Cart</h3>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Image</TableHead>
+            <TableHead>Quantity</TableHead>
+            <TableHead>Price</TableHead>
+            <TableHead className="w-8">
+              <span className="sr-only">Actions</span>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {cart.map((item, index) => (
+            <TableRow key={index}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>
+                <Image
+                  src={`${item.image}`}
+                  height={100}
+                  width={100}
+                  alt="product image"
+                  className="rounded-sm"
+                />
+              </TableCell>
+              <TableCell>
+                <div className="text-center md:flex items-center justify-around">
+                  <div className="md:hidden">
+                    <AddButton data={item} />
+                  </div>
+                  {item.quantity}
+                  <div className="hidden md:block">
+                    <AddButton data={item} />
+                  </div>
+                  <div>
+                    <RemoveButton data={item} />
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell>{formatCurrency(item.priceInCents / 100)}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <div className="flex justify-between">
+        <div className="flex items-center space-x-3">
+          <h4>Total: ${totalCost}</h4>
+          <Button onClick={handleCheckout}>Checkout</Button>
         </div>
-      ))}
-      <div>
-        <h4>Total: ${totalCost}</h4>
-        <Button onClick={handleCheckout}>Checkout</Button>
+        <div>
+          <RemoveAllButton />
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

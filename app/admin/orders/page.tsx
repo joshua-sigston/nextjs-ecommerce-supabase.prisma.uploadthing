@@ -15,6 +15,8 @@ import {
 } from '@/components/ui/table';
 import { MoreVertical } from 'lucide-react';
 import { DeleteDropDownItem } from './_components/order-actions';
+import { Suspense } from 'react';
+import Spinner from '../_components/spinner';
 
 function getOrders() {
   return db.order.findMany({
@@ -31,9 +33,9 @@ function getOrders() {
 
 export default function OrdersPage() {
   return (
-    <div>
+    <Suspense fallback={<Spinner />}>
       <OrdersTable />
-    </div>
+    </Suspense>
   );
 }
 
