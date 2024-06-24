@@ -65,21 +65,22 @@ interface hamburgerProps {
 }
 
 function Hamburger({ toggleMenu, menu }: hamburgerProps) {
+  console.log(menu);
   return (
     <div
       className="fixed z-40 top-5 right-4 flex flex-col gap-y-3 rounded-md lg:right-28"
       onClick={toggleMenu}
     >
-      <div className="w-[50px] h-[4px] bg-gray-700"></div>
+      <div className="w-[50px] h-[4px] bg-secondary-foreground"></div>
       <div
         className={`w-[10px] h-[10px] bg-teal-500 absolute ${
-          menu ? 'translate-x-10 bg-rose-900' : 'translate-x-0'
+          menu ? 'bg-red-300 translate-x-10' : 'translate-x-0'
         } transition ease-in-out duration-500`}
       ></div>
-      <div className="w-[50px] h-[4px] bg-gray-700"></div>
+      <div className="w-[50px] h-[4px] bg-secondary-foreground"></div>
       <div
         className={`w-[10px] h-[10px] bottom-0 right-0 bg-teal-500 absolute ${
-          menu ? 'translate-x-[-400%] bg-rose-900' : 'translate-x-0'
+          menu ? 'bg-red-300 translate-x-[-400%]' : 'translate-x-0'
         } transition ease-in-out duration-500`}
       ></div>
     </div>
